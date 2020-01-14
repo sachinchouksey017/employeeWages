@@ -96,3 +96,43 @@ function EmpWagesMonth(){
 }
 EmpWagesMonth
 
+#UC-6
+function workingDayReached(){
+   local isPartTime=1;
+   local isFullTime=2;
+   local empRatePerHrs=20;
+   local workingDay=0;
+   local workingHrs=0;
+   local totalWorkingDay=20;
+   local totalWorkingHrs=100;
+
+   while [[ $workingDay -le $totalWorkingDay && $workingHrs -le $totalWorkingHrs ]]
+   do 
+      randomCheck=$(( RANDOM%3 ))
+
+      case $randomCheck in
+         $isFullTime)
+           empHrs=8;
+           workingHrs=$(( workingHrs + empHrs ));
+           ((workingDay++))
+         ;;
+         $isPartTime)
+           empHrs=4;
+           workingHrs=$(( workingHrs + empHrs ));
+           ((workingDay++))
+         ;;
+         *)
+           empHrs=0;
+         ;;
+      esac
+   done
+   if [ $workingDay -eq $totalWorkingDay ]
+   then
+      salary=$(( empRatePerHrs*8*workingDay ));
+   else
+      salary=$(( empRatePerHrs*totalWorkingHrs ));
+   fi
+      echo "salary for month is $salary"
+
+}
+workingDayReached
