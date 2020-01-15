@@ -10,7 +10,7 @@ function isEmpPresent(){
    then
       echo "Employee is Present "
    else
-      echo "Employee is Absent "
+      echo "Employee is Absent will come tommorow "
    fi
 }
 isEmpPresent
