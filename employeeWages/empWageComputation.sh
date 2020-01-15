@@ -212,5 +212,33 @@ function storeDailyWages(){
 }
 storeDailyWages
 
+#UC-9
+function storeDailyWagesWithDay(){
+   local empRatePerHrs=20;
+   local totalWorkingDay=20;
+   local workingDay=0;
+   local totalSalary=0;
+   declare -A salaryDictonary;
+   declare -A totalSalaryDictonary;
+   local counter=0;
+   while [[ $workingDay -lt $totalWorkingDay  ]]
+   do 
+     empHrs=$(getEmpHrs)
+     salary=$(( empRatePerHrs*empHrs ));
+     totalSalary=$(( totalSalary + salary ))
+     now=$(date +%d/%m/%y -d "$DATE + $counter day")
+     salaryDictonary[$now]=$salary;
+     totalSalaryDictonary[$now]=$totalSalary
+     ((counter++))
+     if [ $empHrs -gt 0 ]
+     then
+        ((workingDay++))
+     fi
+   done
+   echo "daily wages of user is " ${salaryDictonary[@]}
+   echo ""
+   echo "total wages of user is " ${totalSalaryDictonary[@]}
+}
+storeDailyWagesWithDay
 
 
