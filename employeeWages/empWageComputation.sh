@@ -211,6 +211,13 @@ function storeDailyWages(){
    echo "total wages of user is " ${totalSalaryArray[@]}
 }
 storeDailyWages
+function displayDictonary(){
+   for key in ${!salaryDictonary[@]}
+   do
+      echo "date is $key and salary is ${salaryDictonary[$key]}"
+   done
+
+}
 
 #UC-9
 function storeDailyWagesWithDay(){
@@ -238,6 +245,7 @@ function storeDailyWagesWithDay(){
    echo "daily wages of user is " ${salaryDictonary[@]}
    echo ""
    echo "total wages of user is " ${totalSalaryDictonary[@]}
+   displayDictonary
 }
 storeDailyWagesWithDay
 
