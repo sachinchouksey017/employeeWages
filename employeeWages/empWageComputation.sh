@@ -185,3 +185,32 @@ function workingDayFunction(){
 }
 workingDayFunction
 
+#UC-8
+function storeDailyWages(){
+   local empRatePerHrs=20;
+   local totalWorkingDay=20;
+   local workingDay=0;
+   local totalSalary=0;
+   local salaryArray=[];
+   local totalSalaryArray=[]
+   local counter=0
+   while [[ $workingDay -lt $totalWorkingDay  ]]
+   do 
+     empHrs=$(getEmpHrs)
+     salary=$(( empRatePerHrs*empHrs ));
+     totalSalary=$(( totalSalary + salary ))
+     salaryArray[$counter]=$salary
+     totalSalaryArray[((counter++))]=$totalSalary
+     if [ $empHrs -gt 0 ]
+     then
+        ((workingDay++))
+     fi
+   done
+   echo "daily wages of user is " ${salaryArray[@]}
+   echo ""
+   echo "total wages of user is " ${totalSalaryArray[@]}
+}
+storeDailyWages
+
+
+
